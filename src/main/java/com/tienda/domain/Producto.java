@@ -4,45 +4,113 @@
  */
 package com.tienda.domain;
 
-import jakarta.persistence.*;
-import java.io.Serializable;
-//import java.util.List;
-import lombok.Data;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 /**
  *
- * @author jafet
+ * @author Jason
  */
-@Data
 @Entity
-@Table(name = "producto")
-public class Producto implements Serializable {
-
-    private static final long serialVersionUID = 1L;
-
+@Table(name="producto")
+public class Producto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_producto")
-    private long idProducto;
+    private long id_producto;
+    
+    @Column(name = "nombre", nullable = false)
+    private String nombre;
+    
+    @Column(name = "ruta_imagen", nullable = false)
+    private String ruta_imagen;
+    
+    @Column(name = "descripcion", nullable = false)
     private String descripcion;
-    private String rutaImagen;
-    private boolean activo;
-    private long idCategoria;
-    private String detalle;
-    private int existencias;
+    
+    @Column(name = "precio", nullable = false)
     private double precio;
     
-    //@OneToMany
-//@JoinColumn(name="id_categoria",updatable=false)
-//List<Producto> productos;
-
+    @Column(name = "stock", nullable = false)
+    private int stock;
 
     public Producto() {
     }
 
-    public Producto(String descripcion, boolean activo) {
+    public Producto(long id_producto, String nombre, String ruta_imagen, String descripcion, double precio, int stock) {
+        super();
+        this.id_producto = id_producto;
+        this.nombre = nombre;
+        this.ruta_imagen = ruta_imagen;
         this.descripcion = descripcion;
-        this.activo = activo;
+        this.precio = precio;
+        this.stock = stock;
+    }
+    
+    public Producto(String nombre, String ruta_imagen, String descripcion, double precio, int stock) {
+        super();
+        this.nombre = nombre;
+        this.ruta_imagen = ruta_imagen;
+        this.descripcion = descripcion;
+        this.precio = precio;
+        this.stock = stock;
     }
 
+    public long getId_producto() {
+        return id_producto;
+    }
+
+    public void setId_producto(long id_producto) {
+        this.id_producto = id_producto;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getRuta_imagen() {
+        return ruta_imagen;
+    }
+
+    public void setRuta_imagen(String ruta_imagen) {
+        this.ruta_imagen = ruta_imagen;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public double getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(double precio) {
+        this.precio = precio;
+    }
+
+    public int getStock() {
+        return stock;
+    }
+
+    public void setStock(int stock) {
+        this.stock = stock;
+    }
+
+    @Override
+    public String toString() {
+        return "Producto{" + "id_producto=" + id_producto + ", nombre=" + nombre + ", ruta_imagen=" + ruta_imagen + ", descripcion=" + descripcion + ", precio=" + precio + ", stock=" + stock + '}';
+    }
+    
+    
 }
